@@ -4,26 +4,38 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 
 
-# Help was taken from Code Institute's DRF API walkthrough project and updates are made.
+# Help was taken from Code Institute's DRF API walkthrough project.
+# Updates were made.
 class Profile(models.Model):
     """
     Users's Profile Model
     """
-    PROGRAMMING_LANGUAGE = [('HTML', 'HTML'),
-                            ('CSS', 'CSS'),
-                            ('JAVASCRIPT', 'Javascript'),
-                            ('PYTHON', 'python'),
-                            ('JAVA', 'Java'),
-                            ('C AND C++', 'C and C++'),
-                            ('PHP', 'PHP'),
-                            ('C#', 'C#'),
-                            ]
+    PROGRAMMING_LANGUAGE = [
+        ('HTML', 'HTML'),
+        ('CSS', 'CSS'),
+        ('JAVASCRIPT', 'Javascript'),
+        ('PYTHON', 'python'),
+        ('JAVA', 'Java'),
+        ('C AND C++', 'C and C++'),
+        ('PHP', 'PHP'),
+        ('C#', 'C#'),
+    ]
+    YEARS = [
+        ('LESS THAN 1 YEAR', 'Less than 1 year'),
+        ('1 YEAR', '1 Year'),
+        ('2 YEARS', '2 Years'),
+        ('3 YEARS', '3 Years'),
+        ('4 YEARS', '4 Years'),
+        ('5 OR MORE YEARS', '5 or More years')
+    ]
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=100, blank=True)
+    years_of_experience = models.CharField(
+        max_length=50, choices=YEARS, blank=True)
     favourite_programming_language = models.CharField(
-        max_length=20, choices=PROGRAMMING_LANGUAGE, default=None)
+        max_length=20, choices=PROGRAMMING_LANGUAGE, blank=True)
     about_me = models.TextField(blank=True)
     image = models.ImageField(
         upload_to='images/', default='../default_profile_sgymh1')
