@@ -5,7 +5,7 @@ from .models import Post
 # Help was taken from Code Institute's DRF API walkthrough project.
 class PostSerializer(serializers.ModelSerializer):
     '''
-    Profile serializer to converts Django models into JSON,
+    Post serializer to converts Django models into JSON,
     which can be used for frontend.
     '''
     owner = serializers.ReadOnlyField(source='owner.username')

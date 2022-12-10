@@ -17,9 +17,8 @@ class Post(models.Model):
         upload_to='images/', default='../default_post_z0gbil', blank=True
     )
 
-
-class Meta:
-    ordering = ['-created_on']
+    class Meta:
+        ordering = ['-created_on']
 
     def __str__(self):
         return f'{self.id} {self.title}'
