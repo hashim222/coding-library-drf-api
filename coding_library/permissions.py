@@ -1,6 +1,7 @@
 from rest_framework import permissions
 
 
+# Help was taken from Code Institute's DRF API walkthrough project.
 class IsOwnerOrReadOnly(permissions.BasePermission):
     '''
     Users can use the crud functionality if they are the owner,

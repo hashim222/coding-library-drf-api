@@ -5,7 +5,7 @@ from .models import Comment
 # Help was taken from Code Institute's DRF API walkthrough project.
 class CommentSerializer(serializers.ModelSerializer):
     '''
-    Comment serializer to converts Django models into JSON,
+    Comment serializer to converts Comment models into JSON,
     which can be used for frontend.
     '''
     owner = serializers.ReadOnlyField(source='owner.username')

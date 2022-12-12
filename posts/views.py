@@ -7,7 +7,7 @@ from coding_library.permissions import IsOwnerOrReadOnly
 # Help was taken from Code Institute's DRF API walkthrough project.
 class PostList(generics.ListCreateAPIView):
     '''
-    posts are created and displayed.
+    Posts can be created and displayed.
     '''
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

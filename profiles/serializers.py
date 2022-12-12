@@ -5,7 +5,7 @@ from .models import Profile
 # Help was taken from Code Institute's DRF API walkthrough project.
 class ProfileSerializer(serializers.ModelSerializer):
     """
-    Profile serializer to converts Django models into JSON,
+    Profile serializer to converts Profile models into JSON,
     which can be used for frontend.
     """
     owner = serializers.ReadOnlyField(source="owner.username")
