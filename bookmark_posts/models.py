@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from posts.models import Post
 
 
-# Help was taken from Code Institute's DRF API walkthrough project.
 class Bookmark(models.Model):
     """
     Bookmark model.
