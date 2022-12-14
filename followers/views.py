@@ -6,7 +6,7 @@ from .serializers import FollowerSerializer
 
 class FollowerList(generics.ListCreateAPIView):
     '''
-    Users can follow other users and they will be displayed.
+    Users can follow other users and they will be displayed on the List.
     '''
     serializer_class = FollowerSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -18,7 +18,7 @@ class FollowerList(generics.ListCreateAPIView):
 
 class FollowerDetail(generics.RetrieveDestroyAPIView):
     '''
-    Retrieve single user info by Id and the owner can unfollow
+    Retrieves single user info by Id and the owner can unfollow
     the user he is following.
     '''
     serializer_class = FollowerSerializer
