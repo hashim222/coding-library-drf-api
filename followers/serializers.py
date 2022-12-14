@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from rest_framework import serializers
 from .models import Follower
 
@@ -15,3 +16,16 @@ class FollowerSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'created_on', 'followed', 'followed_name'
         ]
+
+    # Help was taken from Code Institute's DRF API walkthrough project.
+    def create(self, validated_data):
+        '''
+        If a user tries to follow the same user multiple times,
+        it will throw a duplicate error.
+        '''
+        try:
+            return super().create(validated_data)
+        except IntegrityError:
+            raise serializers.ValidationError({
+                'detail': 'possible duplication'
+            })
