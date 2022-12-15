@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from .models import Post
+from posts.models import Post
+from likes.models import Like
+from bookmark_posts.models import Bookmark
 
 
 # Help was taken from Code Institute's DRF API walkthrough project.
@@ -12,6 +14,8 @@ class PostSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
+    like_id = serializers.SerializerMethodField()
+    bookmark_id = serializers.SerializerMethodField()
 
     def validate_image(self, value):
         '''
@@ -39,9 +43,48 @@ class PostSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.owner
 
+    def get_like_id(self, obj):
+        '''
+        When a logged-in user likes the post,
+        the like Id will be displayed in the post.
+        If not logged in, it will display None.
+        '''
+        user = self.context['request'].user
+        if user.is_authenticated:
+            like = Like.objects.filter(
+                owner=user,
+                post=obj
+            ).first()
+            if like:
+                return like.id
+            else:
+                return None
+        else:
+            return None
+
+    def get_bookmark_id(self, obj):
+        '''
+        When a logged-in user bookmarks the post,
+        the bookmark Id will be displayed in the post.
+        If not logged in, it will display None.
+        '''
+        user = self.context['request'].user
+        if user.is_authenticated:
+            bookmark = Bookmark.objects.filter(
+                owner=user,
+                post=obj
+            ).first()
+            if bookmark:
+                return bookmark.id
+            else:
+                return None
+        else:
+            return None
+
     class Meta:
         model = Post
         fields = [
             'id', 'owner', 'is_owner', 'profile_id', 'profile_image',
-            'created_on', 'updated_on', 'title', 'caption', 'image'
+            'created_on', 'updated_on', 'title', 'caption',
+            'image', 'like_id', 'bookmark_id'
         ]

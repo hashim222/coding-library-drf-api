@@ -22,8 +22,9 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     def get_following_id(self, obj):
         '''
-        When a logged-in user follows another user, the following ID
+        When a logged-in user follows another user, the following Id
         is displayed in the profile.
+        If not logged in, it will display None.
         '''
         user = self.context['request'].user
         if user.is_authenticated:
