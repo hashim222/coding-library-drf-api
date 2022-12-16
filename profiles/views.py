@@ -1,10 +1,12 @@
 from rest_framework import generics, filters
 from django.db.models import Count
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Profile
 from .serializers import ProfileSerializer
 from coding_library.permissions import IsOwnerOrReadOnly
 
 
+# Help was taken from Code Institute's DRF API walkthrough project.
 class ProfileList(generics.ListAPIView):
     """
     Display all the user's profile.
@@ -17,7 +19,8 @@ class ProfileList(generics.ListAPIView):
     ).order_by('-created_on')
 
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        DjangoFilterBackend
     ]
 
     ordering_fields = [
@@ -26,6 +29,11 @@ class ProfileList(generics.ListAPIView):
         'following_count',
         'owner__following__created_on',
         'owner__followed__created_on'
+    ]
+
+    filterset_fields = [
+        'owner__following__followed__profile',
+        'owner__followed__owner__profile'
     ]
 
 
