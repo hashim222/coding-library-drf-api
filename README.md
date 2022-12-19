@@ -5,6 +5,30 @@
 Coding Library Drf-Api is a back-end API created using Django Rest Framework that handles all backend functionality including user profiles, posts, comments, likes, post bookmarks, followers, authentication, authorization and more.
 
 ## Preview
+* ### [Coding Library DRF-API ](https://coding-library-drf-api.herokuapp.com/) 
+
+## Contents
+* [Database Scheme](#database-scheme)
+
+* [Testings](#testings)
+
+* [Bugs](#bugs)
+    * [Fixed Bugs](#fixed-bugs)
+    * [Unfixed Bugs](#unfixed-bugs)
+
+* [Technologies Used](#technologies-used)
+
+    * [Language](#language)
+    * [Framework](#frameworks)
+    * [Libraries/Module Installed](#librariesmodule-installed)
+    * [Other Technologies](#other-technologies)
+
+* [Deployments](#deployments)
+
+    * [Heroku](#heroku)
+    * [Github](#github)
+
+* [Credits](#credits)
 
 
 ## Database Scheme
@@ -67,6 +91,8 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     * [Lucidchart](https://lucid.app/documents#/dashboard)
 
 ## Deployments
+* ### Heroku
+* ### Github
 
 ## Credits
 * ### Media
