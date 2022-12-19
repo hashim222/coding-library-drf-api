@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+# Help was taken from Code Institute's DRF API walkthrough project.
 class Follower(models.Model):
     '''
     Follower model.

@@ -4,6 +4,7 @@ from .models import Follower
 from .serializers import FollowerSerializer
 
 
+# Help was taken from Code Institute's DRF API walkthrough project.
 class FollowerList(generics.ListCreateAPIView):
     '''
     Users can follow other users and they will be displayed on the List.

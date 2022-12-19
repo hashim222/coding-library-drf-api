@@ -35,6 +35,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 ![Database schema for the website](static/readme-images/database-schema.png)
 
 ## Testings
+* You can check what testing has been performed for the website by clicking [Testings.md](Testings.md)
 
 ## Bugs
 
@@ -44,7 +45,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
         ![get_is_owner bug image 1](static/readme-images/get_is_owner-bug-1.png)
         ![get_is_owner bug image 2](static/readme-images/get_is_owner-bug-2.png)  
 
-    * During deployment on Heroku, I encountered another issue. Every time I ran my deployed site, I received a `Bad Request` error, which was caused by the unnecessary `https://` I added to the allowed host. After I removed it, the site worked fine.
+    * During deployment on Heroku, I encountered another issue. Every time I ran my deployed site, I received a `Bad Request` error, which was caused by the unnecessary `https://` I added inside the `ALLOWED_HOSTS`. After I removed it, the site worked fine.
 
         ![get_is_owner bug image 1](static/readme-images/bad-request-deployed-error-1.png)
         ![get_is_owner bug image 2](static/readme-images/bad-request-deployed-error-2.png) 
@@ -89,6 +90,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     * [Heroku](https://dashboard.heroku.com/apps)
     * [Cloudinary](https://cloudinary.com/)
     * [Lucidchart](https://lucid.app/documents#/dashboard)
+    * [CI Python Linter](https://pep8ci.herokuapp.com/)
 
 ## Deployments
 * ### Heroku
