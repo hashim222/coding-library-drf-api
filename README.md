@@ -100,10 +100,10 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     * In the workspace using terminal add `pip3 install 'django<4'` to install django and also install Cloudinray storage and Pillow using `pip install django-cloudinary-storage`, `pip install Pillow`.
     * create your project name by using `django-admin startproject my_proj_name .`
     * Make sure to add these on the settings.py file too,  
-        ``` json
+        ```
         INSTALLED_APPS = [
         "cloudinary_storage",
-        'django.contrib.staticfiles',
+        "django.contrib.staticfiles",
         "cloudinary",
         "my_proj_name"
         ] 
