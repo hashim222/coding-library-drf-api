@@ -93,6 +93,58 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     * [CI Python Linter](https://pep8ci.herokuapp.com/)
 
 ## Deployments
+* ### Project Setup
+    * Navigate the CI provided template repo on github and click `use this template` button and then press `create a new repository`.
+    * Add your project name and then select `create a repository from template`.
+    * After successfully creating a repo, you will see the green `gitpod` button, which by clicking creates a workspace for your project.
+    * In the workspace using terminal add `pip3 install 'django<4'` to install django and also install Cloudinray storage and Pillow using `pip install django-cloudinary-storage`, `pip install Pillow`.
+    * create your project name by using `django-admin startproject my_proj_name .`
+    * Make sure to add these on the settings.py file too,  
+        ``` json
+        INSTALLED_APPS = [
+        "cloudinary_storage",
+        'django.contrib.staticfiles',
+        "cloudinary",
+        "my_proj_name"
+        ] 
+        ```
+    * Visit the [cloudinary](https://cloudinary.com/) website and create an account with them.
+    * In the gitpod workspace create a new `env.py` file on the top level directory and `import os`.
+    * Visit the Cloudinary website and click dashboard then copy the URL for `your API Environment variable`.
+    * Set the CLOUDINARY_URL in `env.py`,
+        ```
+        os.environ['CLOUDINARY_URL'] = 'cloudinary://<API Environment variable from cloudinary>'
+        ```
+    * In the `settings.py` file `import os` and below add
+        ```
+        if os.path.exists('env.py'):
+            import env
+        ```
+    * Set `CLOUDINARY_STORAGE` variable equals to the `CLOUDINARY_URL` variable,
+        ```
+        CLOUDINARY_STORAGE = {
+        'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
+        }
+        ```
+    * Define Media Storage URL
+        `MEDIA_URL = '/media/'`
+    * Define Default File Storage to Cloudinary
+        ```
+        DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+        ```
+    * Use these commands to save everything on Github
+        ```
+        git add .  
+
+        git commit -m "created my project and setup with cloudinary"
+
+        git push
+        ```
+
+
+
+* ### JWT Tokens
+* ### ElephantSQL
 * ### Heroku
 * ### Github
 
