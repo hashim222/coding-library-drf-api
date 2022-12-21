@@ -242,7 +242,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
   - Run migrations by using `python manage.py migrate`
   - Create a requirements.txt file and run `pip freeze > requirements.txt` to add all the install files into the `requirements.txt` file.
-  - Run `git add`, `git commit -m "..."`, `git push` commands again to save all the changes in the github.
+  - Run `git add`, `git commit -m "..."`, `git push` commands again to save to.
 
   - Create a `views.py` in the `your_proj_name` directory to add a custom message to the root_route.
 
@@ -282,7 +282,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
       ]
     ```
 
-  - Run `git add`, `git commit -m "..."`, `git push` commands again to save all the changes in the github.
+  - Run `git add`, `git commit -m "..."`, `git push` commands again to save to.
 
 - ### Heroku & ElephantSQL
 
@@ -297,12 +297,10 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - Copy your ElephantSQL database URL using the Copy icon. It will start with `postgres://`
   - In [Heroku](https://id.heroku.com/login), open the settings tab, and click on `Reveal Config Vars`.
   - Add the `DATABASE_URL` key in the config var and the value should be the ElephantSQL database url you copied in the previous step.
-  - In the Gitpod workspace, add the following extra libraries to make Heroku work:
-
-    ```
-    pip install dj_database_url
-    pip install gunicorn
-    ```
+  - In the Gitpod workspace, add the following extra libraries to make Heroku work `pip install dj_database_url` and `pip install gunicorn` and `import dj_database_url` into the `your_proj_name` > `settings.py` file.
+  - Add the following extra libraries to the Gitpod workspace to make Heroku work:
+    `pip install dj_database_url` and `pip install gunicorn`.
+    `Import dj_database_url` into `your_proj_name` > `settings.py`.
 
   - In `your_proj_name` > `settings.py` file add the following code to separate development and production environments:
     ```
@@ -322,6 +320,50 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
     web: gunicorn your_proj_name.wsgi
     ```
+
+  - In `your_proj_name` > `settings.py` set `ALLOWED_HOSTS` = `['<yourherokuappname>.herokuapp.com', 'localhost']`.
+  - In the terminal add `pip install django-cors-headers` to install CORS.
+  - Go back to `your_proj_name` > `settings.py` add inside the `INSTALLED_APPS` and `MIDDLEWARE`:
+
+    ```
+    INSTALLED_APPS = [
+    'corsheaders'
+    ]
+
+    MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware'
+    ]
+    ```
+
+  - For the network request made to the server add the following code:
+    ```
+    if 'CLIENT_ORIGIN' in os.environ:
+      CORS_ALLOWED_ORIGINS = [
+          os.environ.get('CLIENT_ORIGIN')
+      ]
+    else:
+      CORS_ALLOWED_ORIGIN_REGEXES = [
+          r"^https://.*\.gitpod\.io$",
+      ]
+    ```
+  - To allow Cookies `CORS_ALLOW_CREDENTIALS = True`.
+  - Allowing front-end apps and APIs to be deployed on different platforms add `JWT_AUTH_SAMESITE = 'None'`.
+
+  - In the `env.py` file add your secret key `os.environ['SECRET_KEY'] = 'chooseanysecretkey'`.
+  - In `your_proj_name` > `settings.py` file replace your insecure key with the one you just created `SECRET_KEY = os.getenv('SECRET_KEY')`
+
+  - Replace the DEBUG Setting to True in Developments mode and False in Production modes.
+    ```
+    DEBUG = 'DEV' in os.environ
+    ```
+  - Copy the key and value of `SECRET_KEY` and `CLOUDINARY_URL` from `env.py` and add them to the Heroku config vars.
+
+  - Before deploying to Github, update `requirements.txt` by adding `pip freeze > requirements.txt`
+
+  - Run `git add`, `git commit -m "..."`, `git push` commands again to save all the changes into the github.
+  - Select the project repository name from Github, and connect.
+  - In the Manual deploy section, choose the `main` Branch.
+  - To view the app, click Open App once the deployment branch has been completed.
 
 ## Credits
 
