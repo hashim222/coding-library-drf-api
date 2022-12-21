@@ -55,6 +55,11 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     ![get_is_owner bug image 1](static/readme-images/bad-request-deployed-error-1.png)
     ![get_is_owner bug image 2](static/readme-images/bad-request-deployed-error-2.png)
 
+  - While making the readme documentation, I encountered a `faild to push` issue where I was unable to push my code, so I contacted tutor support and John helped me resolve the issue.
+
+    ![get push bug image 1](static/readme-images/git-push-error-1.png)
+    ![get push bug image 2](static/readme-images/git-push-error-2.png)
+
 - ### Unfixed Bugs
 
 ## Technologies Used
@@ -232,17 +237,52 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     Place under `JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'`
 
     ```
-    REST_AUTH_SERIALIZERS = {'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'}
+    REST_AUTH_SERIALIZERS = {'USER_DETAILS_SERIALIZER': 'your_proj_name.serializers.CurrentUserSerializer'}
     ```
 
   - Run migrations by using `python manage.py migrate`
   - Create a requirements.txt file and run `pip freeze > requirements.txt` to add all the install files into the `requirements.txt` file.
-  - To save all the changes on the github run these commands,
+  - Run `git add`, `git commit -m "..."`, `git push` commands again to save all the changes in the github.
+
+  - Create a `views.py` in the `your_proj_name` directory to add a custom message to the root_route.
+
+  - Add the following code:
+
     ```
-    git add .
-    git commit -m "changes made"
-    git push
+    from rest_framework.decorators import api_view
+    from rest_framework.response import Response
+
+    @api_view()
+    def root_route(request):
+        return Response({"message": "Welcome to my django rest framework API!"})
     ```
+
+  - Add that to `urls.py` in `your_proj_name` directory.
+
+    ```
+    urlpatterns = [
+    path('', root_route)
+    ]
+    ```
+
+  - In `your_proj_name` > `settings.py` add the following code to setup site page pagination.
+    ```
+    REST_FRAMEWORK = {
+    [...],
+    'DEFAULT_PAGINATION_CLASS':  'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    }
+    ```
+  - Set JSON Renderer if Dev environment is not present.
+
+    ```
+    if 'DEV' not in os.environ:
+      REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+          'restframework.renderers.JSONRenderer'
+      ]
+    ```
+
+  - Run `git add`, `git commit -m "..."`, `git push` commands again to save all the changes in the github.
 
 - ### Heroku & ElephantSQL
 
@@ -252,7 +292,3 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
 - ### Media
 - ### Content
-
-```
-
-```
