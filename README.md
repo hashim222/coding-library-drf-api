@@ -286,7 +286,42 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
 - ### Heroku & ElephantSQL
 
-- ### Github
+  - If you don't already have an account with [Heroku](https://id.heroku.com/login), create one.
+  - Make a new app and name it something unique; choose a region that is close to you.
+  - To get started, log into [ElephantSQL](https://www.elephantsql.com/) or create an account with them If you dont have one.
+  - Give your plan a Name (this is commonly the name of the project)
+  - Select the Tiny Turtle (Free) plan and you can leave the Tags field blank.
+  - Select your nearest region.
+  - Make sure your details are correct and click on `Create instance`
+  - Go back to the ElephantSQL dashboard and select the project's database name that you just created.
+  - Copy your ElephantSQL database URL using the Copy icon. It will start with `postgres://`
+  - In [Heroku](https://id.heroku.com/login), open the settings tab, and click on `Reveal Config Vars`.
+  - Add the `DATABASE_URL` key in the config var and the value should be the ElephantSQL database url you copied in the previous step.
+  - In the Gitpod workspace, add the following extra libraries to make Heroku work:
+
+    ```
+    pip install dj_database_url
+    pip install gunicorn
+    ```
+
+  - In `your_proj_name` > `settings.py` file add the following code to separate development and production environments:
+    ```
+    DATABASES = {
+      'default': ({
+      'ENGINE': 'django.db.backends.sqlite3',
+      'NAME': BASE_DIR / 'db.sqlite3',
+      } if 'DEV' in os.environ else dj_database_url.parse(
+      os.environ.get('DATABASE_URL')
+      ))
+    }
+    ```
+  - To let Heroku know how to run the project, create a Procfile and add the following code:
+
+    ```
+    release: python manage.py makemigrations && python manage.py migrate
+
+    web: gunicorn your_proj_name.wsgi
+    ```
 
 ## Credits
 
