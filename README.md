@@ -106,14 +106,14 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - Add your project name and then select `create a repository from template`.
   - After successfully creating a repo, you will see a green `gitpod` button, which by clicking creates a workspace for your project.
   - In the workspace using terminal add `pip3 install 'django<4'` to install django and also install Cloudinray storage and Pillow using `pip install django-cloudinary-storage`, `pip install Pillow`.
-  - create your project name by using the `django-admin startproject my_proj_name .`
-  - Make sure to add these on the settings.py file too,
+  - create your project name by using the `django-admin startproject your_proj_name .`
+  - Make sure to add these on the `settings.py` file too,
     ```
     INSTALLED_APPS = [
     "cloudinary_storage",
     "django.contrib.staticfiles",
     "cloudinary",
-    "my_proj_name"
+    "your_proj_name"
     ]
     ```
   - Visit the [cloudinary](https://cloudinary.com/) website and create an account with them.
@@ -148,12 +148,111 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     ```
 
 - ### JWT Tokens
-    
-- ### ElephantSQL
-- ### Heroku
+
+  - Install JSON Web Token authentication using `pip install dj-rest-auth`.
+  - Add both rest framework’s auth token and django rest auth to `settings.py` > `INSTALLED_APPS`
+    ```
+    INSTALLED_APPS = [
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    ]
+    ```
+  - Add the urls to the `urlpatterns` list in the `your_proj_name` > `urls.py`.
+    ```
+    urlpatterns = [
+      path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    ]
+    ```
+  - Migrate the database by using `python manage.py migrate`
+  - Install Django all-Auth so users can be able to register `pip install 'dj-rest-auth[with_social]'`
+  - Add the relevant apps to `INSTALLED_APPS`
+    ```
+    INSTALLED_APPS = [
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+    ]
+    ```
+  - Below `INSTALLED_APPS` lists add `SITE_ID = 1`
+  - Add the registration urls to the `urlpatterns` list in the `your_proj_name` > `urls.py`.
+
+    ```
+    urlpatterns = [
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    ]
+    ```
+
+  - To add JSON Web Tokens, install `pip install djangorestframework-simplejwt` into your terminal.
+
+  - In the env.py Create a session authentication value that differentiates between Development and Production mode `os.environ['DEV'] = '1'`
+  - In the `settings.py` under the `SITE_ID = 1`
+
+    ```
+    ​​REST_FRAMEWORK = {
+      'DEFAULT_AUTHENTICATION_CLASSES': [(
+      'rest_framework.authentication.SessionAuthentication'
+      if 'DEV' in os.environ
+      else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+      )]
+    }
+    ```
+
+  - In order to enable jwt token, need to add these configs.
+
+    ```
+    REST_USE_JWT = True
+    JWT_AUTH_COOKIE = 'my-app-auth'
+    JWT_AUTH_SECURE = True
+    JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+    ```
+
+  - Create a `serializers.py` in `your_proj_name` directory.
+
+  - import these files
+
+    ```
+    from dj_rest_auth.serializers import UserDetailsSerializer
+    from rest_framework import serializers
+    ```
+
+  - Create the profile_id and profile_image fields
+
+    ```
+    class CurrentUserSerializer(UserDetailsSerializer):
+    profile_id = serializers.ReadOnlyField(source='profile.id')
+    profile_image = serializers.ReadOnlyField(source='profile.image.url')
+    class Meta(UserDetailsSerializer.Meta):
+        fields = UserDetailsSerializer.Meta.fields + ('profile_id', 'profile_image')
+    ```
+
+  - In `settings.py` file
+    Overwrite the default `USER_DETAILS_SERIALIZER`
+    Place under `JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'`
+
+    ```
+    REST_AUTH_SERIALIZERS = {'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'}
+    ```
+
+  - Run migrations by using `python manage.py migrate`
+  - Create a requirements.txt file and run `pip freeze > requirements.txt` to add all the install files into the `requirements.txt` file.
+  - To save all the changes on the github run these commands,
+    ```
+    git add .
+    git commit -m "changes made"
+    git push
+    ```
+
+- ### Heroku & ElephantSQL
+
 - ### Github
 
 ## Credits
 
 - ### Media
 - ### Content
+
+```
+
+```
