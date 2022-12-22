@@ -28,8 +28,9 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
 - [Deployments](#deployments)
 
-  - [Heroku](#heroku)
-  - [Github](#github)
+  - [Project Setup](#project-setup)
+  - [JWT Tokens](#jwt-tokens)
+  - [Heroku & ElephantSQL](#heroku--elephantsql)
 
 - [Credits](#credits)
 
@@ -121,14 +122,14 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     "your_proj_name"
     ]
     ```
-  - Visit the [cloudinary](https://cloudinary.com/) website and create an account with them.
-  - In order to protect my API keys from being exposed, I need to create an env.py file in the top-level directory of my gitpod workspace and `import os`.
-  - Visit the Cloudinary website and click dashboard then copy the URL from the `your API Environment variable`.
+  - Create an account with [cloudinary](https://cloudinary.com/) to save images there.
+  - In order to protect my API keys from getting exposed, I need to create an env.py file in the top-level directory of my gitpod workspace and `import os`.
+  - Go back to the Cloudinary website and click on the dashboard. Copy the URL from the `your API Environment variable`.
   - Set the CLOUDINARY_URL in `env.py`,
     ```
     os.environ['CLOUDINARY_URL'] = 'cloudinary://<API Environment variable from cloudinary>'
     ```
-  - In the `settings.py` file `import os` and below add
+  - In the `settings.py` file `import os` and below add:
     ```
     if os.path.exists('env.py'):
         import env
@@ -145,7 +146,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     ```
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
     ```
-  - Use these commands to save everything on Github
+  - Use these commands to save everything on the Github
     ```
     git add .
     git commit -m "created my project and setup with cloudinary"
@@ -191,7 +192,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
   - To add JSON Web Tokens, install `pip install djangorestframework-simplejwt` into your terminal.
 
-  - In the env.py Create a session authentication value that differentiates between Development and Production mode `os.environ['DEV'] = '1'`
+  - Back into the `env.py` create a session authentication value that differentiates between Development and Production mode `os.environ['DEV'] = '1'`
   - In the `settings.py` under the `SITE_ID = 1`
 
     ```
@@ -204,7 +205,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     }
     ```
 
-  - In order to enable jwt token, need to add these configs.
+  - In order to enable jwt token, need to add these configs:
 
     ```
     REST_USE_JWT = True
@@ -215,7 +216,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
   - Create a `serializers.py` in `your_proj_name` directory.
 
-  - import these files
+  - import these files:
 
     ```
     from dj_rest_auth.serializers import UserDetailsSerializer
@@ -226,10 +227,10 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
     ```
     class CurrentUserSerializer(UserDetailsSerializer):
-    profile_id = serializers.ReadOnlyField(source='profile.id')
-    profile_image = serializers.ReadOnlyField(source='profile.image.url')
-    class Meta(UserDetailsSerializer.Meta):
-        fields = UserDetailsSerializer.Meta.fields + ('profile_id', 'profile_image')
+      profile_id = serializers.ReadOnlyField(source='profile.id')
+      profile_image = serializers.ReadOnlyField(source='profile.image.url')
+      class Meta(UserDetailsSerializer.Meta):
+          fields = UserDetailsSerializer.Meta.fields + ('profile_id', 'profile_image')
     ```
 
   - In `settings.py` file
@@ -241,8 +242,8 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     ```
 
   - Run migrations by using `python manage.py migrate`
-  - Create a requirements.txt file and run `pip freeze > requirements.txt` to add all the install files into the `requirements.txt` file.
-  - Run `git add`, `git commit -m "..."`, `git push` commands again to save to.
+  - Run pip freeze requirements.txt to add all the install files into the `requirements.txt` file.
+  - Run `git add`, `git commit`, `git push` commands to save all the changes into the github.
 
   - Create a `views.py` in the `your_proj_name` directory to add a custom message to the root_route.
 
@@ -282,7 +283,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
       ]
     ```
 
-  - Run `git add`, `git commit -m "..."`, `git push` commands again to save to.
+  - Run `git add`, `git commit`, `git push` commands again to save all the changes into the github.
 
 - ### Heroku & ElephantSQL
 
@@ -292,15 +293,14 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - Give your plan a Name (this is commonly the name of the project)
   - Select the Tiny Turtle (Free) plan and you can leave the Tags field blank.
   - Select your nearest region.
-  - Make sure your details are correct and click on `Create instance`
+  - Make sure your details are correct and click on `Create instance`.
   - Go back to the ElephantSQL dashboard and select the project's database name that you just created.
   - Copy your ElephantSQL database URL using the Copy icon. It will start with `postgres://`
-  - In [Heroku](https://id.heroku.com/login), open the settings tab, and click on `Reveal Config Vars`.
-  - Add the `DATABASE_URL` key in the config var and the value should be the ElephantSQL database url you copied in the previous step.
-  - In the Gitpod workspace, add the following extra libraries to make Heroku work `pip install dj_database_url` and `pip install gunicorn` and `import dj_database_url` into the `your_proj_name` > `settings.py` file.
+  - In [Heroku](https://id.heroku.com/login) app, open the settings tab, and click on the `Reveal Config Vars`.
+  - Add the `DATABASE_URL` key in the config var and the value should be the ElephantSQL database url you just copied.
   - Add the following extra libraries to the Gitpod workspace to make Heroku work:
     `pip install dj_database_url` and `pip install gunicorn`.
-    `Import dj_database_url` into `your_proj_name` > `settings.py`.
+  - `Import dj_database_url` into `your_proj_name` > `settings.py`.
 
   - In `your_proj_name` > `settings.py` file add the following code to separate development and production environments:
     ```
@@ -313,7 +313,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
       ))
     }
     ```
-  - To let Heroku know how to run the project, create a Procfile and add the following code:
+  - To let Heroku know how to run the project, create a `Procfile` and add the following code:
 
     ```
     release: python manage.py makemigrations && python manage.py migrate
@@ -358,9 +358,9 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     ```
   - Copy the key and value of `SECRET_KEY` and `CLOUDINARY_URL` from `env.py` and add them to the Heroku config vars.
 
-  - Before deploying to Github, update `requirements.txt` by adding `pip freeze > requirements.txt`
+  - Before deploying to Github, update `requirements.txt` by adding `pip freeze > requirements.txt` command.
 
-  - Run `git add`, `git commit -m "..."`, `git push` commands again to save all the changes into the github.
+  - Run `git add`, `git commit`, `git push` commands again to save all the changes into the github.
   - Select the project repository name from Github, and connect.
   - In the Manual deploy section, choose the `main` Branch.
   - To view the app, click Open App once the deployment branch has been completed.
