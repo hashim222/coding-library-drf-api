@@ -6,7 +6,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
 ## Preview
 
-- ### [Coding Library DRF-API ](https://coding-library-drf-api.herokuapp.com/)
+- ### Live View For [Coding Library DRF-API ](https://coding-library-drf-api.herokuapp.com/)
 
 ## Contents
 
@@ -40,7 +40,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
 ## Testings
 
-- You can check what testing has been performed for the website by clicking [Testings.md](Testings.md)
+- You can check what testing has been performed for the website by clicking [Testings.md](Testings.md).
 
 ## Bugs
 
@@ -62,6 +62,8 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     ![get push bug image 2](static/readme-images/git-push-error-2.png)
 
 - ### Unfixed Bugs
+
+  - There have been none so far.
 
 ## Technologies Used
 
@@ -103,6 +105,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - [Cloudinary](https://cloudinary.com/)
   - [Lucidchart](https://lucid.app/documents#/dashboard)
   - [CI Python Linter](https://pep8ci.herokuapp.com/)
+  - [ElephantSQL](https://www.elephantsql.com/)
 
 ## Deployments
 
@@ -116,10 +119,10 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - Make sure to add these on the `settings.py` file too,
     ```
     INSTALLED_APPS = [
-    "cloudinary_storage",
-    "django.contrib.staticfiles",
-    "cloudinary",
-    "your_proj_name"
+      "cloudinary_storage",
+      "django.contrib.staticfiles",
+      "cloudinary",
+      "your_proj_name"
     ]
     ```
   - Create an account with [cloudinary](https://cloudinary.com/) to save images there.
@@ -137,7 +140,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - Set `CLOUDINARY_STORAGE` variable equals to the `CLOUDINARY_URL` variable,
     ```
     CLOUDINARY_STORAGE = {
-    'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
+      'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
     }
     ```
   - Define Media Storage URL
@@ -159,8 +162,8 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - Add both rest framework’s auth token and django rest auth to `settings.py` > `INSTALLED_APPS`
     ```
     INSTALLED_APPS = [
-    'rest_framework.authtoken',
-    'dj_rest_auth',
+      'rest_framework.authtoken',
+      'dj_rest_auth',
     ]
     ```
   - Add the urls to the `urlpatterns` list in the `your_proj_name` > `urls.py`.
@@ -174,11 +177,11 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - Add the relevant apps to `INSTALLED_APPS`
     ```
     INSTALLED_APPS = [
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth.registration',
+      'django.contrib.sites',
+      'allauth',
+      'allauth.account',
+      'allauth.socialaccount',
+      'dj_rest_auth.registration',
     ]
     ```
   - Below `INSTALLED_APPS` lists add `SITE_ID = 1`
@@ -186,7 +189,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
     ```
     urlpatterns = [
-    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+      path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
     ]
     ```
 
@@ -198,9 +201,9 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     ```
     ​​REST_FRAMEWORK = {
       'DEFAULT_AUTHENTICATION_CLASSES': [(
-      'rest_framework.authentication.SessionAuthentication'
-      if 'DEV' in os.environ
-      else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+        'rest_framework.authentication.SessionAuthentication'
+        if 'DEV' in os.environ
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
       )]
     }
     ```
@@ -229,6 +232,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     class CurrentUserSerializer(UserDetailsSerializer):
       profile_id = serializers.ReadOnlyField(source='profile.id')
       profile_image = serializers.ReadOnlyField(source='profile.image.url')
+
       class Meta(UserDetailsSerializer.Meta):
           fields = UserDetailsSerializer.Meta.fields + ('profile_id', 'profile_image')
     ```
@@ -262,7 +266,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
     ```
     urlpatterns = [
-    path('', root_route)
+      path('', root_route)
     ]
     ```
 
@@ -356,10 +360,10 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     ```
     DATABASES = {
       'default': ({
-      'ENGINE': 'django.db.backends.sqlite3',
-      'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
       } if 'DEV' in os.environ else dj_database_url.parse(
-      os.environ.get('DATABASE_URL')
+        os.environ.get('DATABASE_URL')
       ))
     }
     ```
@@ -377,11 +381,11 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
     ```
     INSTALLED_APPS = [
-    'corsheaders'
+      'corsheaders'
     ]
 
     MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware'
+      'corsheaders.middleware.CorsMiddleware'
     ]
     ```
 

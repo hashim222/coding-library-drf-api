@@ -13,20 +13,20 @@ class Profile(models.Model):
     PROGRAMMING_LANGUAGE = [
         ('HTML', 'HTML'),
         ('CSS', 'CSS'),
-        ('JAVASCRIPT', 'Javascript'),
-        ('PYTHON', 'python'),
-        ('JAVA', 'Java'),
-        ('C AND C++', 'C and C++'),
+        ('Javascript', 'Javascript'),
+        ('python', 'python'),
+        ('Java', 'Java'),
+        ('C and C++', 'C and C++'),
         ('PHP', 'PHP'),
         ('C#', 'C#'),
     ]
     YEARS = [
-        ('LESS THAN 1 YEAR', 'Less than 1 year'),
-        ('1 YEAR', '1 Year'),
-        ('2 YEARS', '2 Years'),
-        ('3 YEARS', '3 Years'),
-        ('4 YEARS', '4 Years'),
-        ('5 OR MORE YEARS', '5 or More years')
+        ('Less than 1 year', 'Less than 1 year'),
+        ('1 Year', '1 Year'),
+        ('2 Years', '2 Years'),
+        ('3 Years', '3 Years'),
+        ('4 Years', '4 Years'),
+        ('5 or More years', '5 or More years')
     ]
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
