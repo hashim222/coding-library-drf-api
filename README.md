@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Coding Library Drf-Api is a back-end API created using Django Rest Framework that handles all backend functionality including user profiles, posts, comments, likes, post bookmarks, followers, authentication, authorization and more.
+Coding Library Drf-Api is a back-end API created using Django Rest Framework that handles all backend functionality including user profiles, posts, comments, likes, bookmark posts, followers, authentication, authorization and more.
 
 ## Preview
 
@@ -33,6 +33,8 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - [Heroku & ElephantSQL](#heroku--elephantsql)
 
 - [Credits](#credits)
+  - [Media](#media)
+  - [Content](#content)
 
 ## Database Scheme
 
@@ -46,7 +48,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
 - ### Fixed Bugs
 
-  - In posts serializers, I encountered an issue where I was getting `PostSerializer object has no attribute get_is_owner` error, which turned out to be an indentation for the `get_is_owner` method.
+  - In posts serializers, I encountered an issue where I was getting `PostSerializer object has no attribute get_is_owner` error, which turned out to be an indentation issue for the `get_is_owner` method.
 
     ![get_is_owner bug image 1](static/readme-images/get_is_owner-bug-1.png)
     ![get_is_owner bug image 2](static/readme-images/get_is_owner-bug-2.png)
@@ -63,7 +65,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
 - ### Unfixed Bugs
 
-  - There have been none so far.
+  - So far none
 
 ## Technologies Used
 
@@ -106,6 +108,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - [Lucidchart](https://lucid.app/documents#/dashboard)
   - [CI Python Linter](https://pep8ci.herokuapp.com/)
   - [ElephantSQL](https://www.elephantsql.com/)
+  - [Grammarly](https://www.grammarly.com/)
 
 ## Deployments
 
@@ -127,7 +130,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     ```
   - Create an account with [cloudinary](https://cloudinary.com/) to save images there.
   - In order to protect my API keys from getting exposed, I need to create an env.py file in the top-level directory of my gitpod workspace and `import os`.
-  - Go back to the Cloudinary website and click on the dashboard. Copy the URL from the `your API Environment variable`.
+  - Go back to the Cloudinary website and click on the dashboard. Copy the URL from the `Paste your API Environment variable`.
   - Set the CLOUDINARY_URL in `env.py`,
     ```
     os.environ['CLOUDINARY_URL'] = 'cloudinary://<API Environment variable from cloudinary>'
@@ -184,7 +187,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
       'dj_rest_auth.registration',
     ]
     ```
-  - Below `INSTALLED_APPS` lists add `SITE_ID = 1`
+  - Below `INSTALLED_APPS` list add `SITE_ID = 1`
   - Add the registration urls to the `urlpatterns` list in the `your_proj_name` > `urls.py`.
 
     ```
@@ -246,7 +249,7 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
     ```
 
   - Run migrations by using `python manage.py migrate`
-  - Run pip freeze requirements.txt to add all the install files into the `requirements.txt` file.
+  - Run `pip freeze > requirements.txt` to add all the install libraries into the `requirements.txt` file.
   - Run `git add`, `git commit`, `git push` commands to save all the changes into the github.
 
   - Create a `views.py` in the `your_proj_name` directory to add a custom message to the root_route.
@@ -429,4 +432,5 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - I used the Code Institute's DRF-API walkthrough project as a guide to make this Backend API. Updates were also made.
   - All the codes have been credited.
   - Leah Fisher's [pp5-backend-DRF-the-winding-path](https://github.com/cornishcoder1/pp5-backend-DRF-the-winding-path) project provided insight into what needs to be added in my readme file.
-  - Throughout the project, I received assistance from the tutor.
+  - Throughout the project, I received assistance from tutor support.
+  - [Grammarly](https://www.grammarly.com/) was used while creating the readme documentation to fix some grammar issues due to english being not my first language.
