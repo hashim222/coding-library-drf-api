@@ -269,9 +269,9 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - In `your_proj_name` > `settings.py` add the following code to setup site page pagination.
     ```
     REST_FRAMEWORK = {
-    [...],
-    'DEFAULT_PAGINATION_CLASS':  'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
+      [...],
+      'DEFAULT_PAGINATION_CLASS':  'rest_framework.pagination.PageNumberPagination',
+      'PAGE_SIZE': 10,
     }
     ```
   - Set JSON Renderer if Dev environment is not present.
@@ -281,6 +281,56 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
       REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
           'restframework.renderers.JSONRenderer'
       ]
+    ```
+
+  - It turns out that dj-rest-auth has a bug that doesn’t allow users to log out ref: [DRF Rest Auth Issues](https://github.com/iMerica/dj-rest-auth/issues/246). Follow the steps below to fix the bug.
+
+  - In `your_proj_name` > `views.py` import all these jwt_auth from the settings:
+
+    ```
+    from .settings import (
+      JWT_AUTH_COOKIE, JWT_AUTH_REFRESH_COOKIE, JWT_AUTH_SAMESITE,
+      JWT_AUTH_SECURE,
+    )
+    ```
+
+  - You will then need to add the following code:
+
+    ```
+    @api_view(['POST'])
+    def logout_route(request):
+      response = Response()
+      response.set_cookie(
+        key=JWT_AUTH_COOKIE,
+        value='',
+        httponly=True,
+        expires='Thu, 01 Jan 1970 00:00:00 GMT',
+        max_age=0,
+        samesite=JWT_AUTH_SAMESITE,
+        secure=JWT_AUTH_SECURE,
+      )
+      response.set_cookie(
+        key=JWT_AUTH_REFRESH_COOKIE,
+        value='',
+        httponly=True,
+        expires='Thu, 01 Jan 1970 00:00:00 GMT',
+        max_age=0,
+        samesite=JWT_AUTH_SAMESITE,
+        secure=JWT_AUTH_SECURE,
+      )
+      return response
+    ```
+
+  - In the `your_proj_name` > `urls.py` import logout_route and then include it in the urlpatterns list. The important thing to note here is that our logout_route
+    has to be placed above the default dj-rest-auth urls, so that it is matched first.
+
+    ```
+    from .views import root_route, logout_route
+
+    urlpatterns = [
+      path('dj-rest-auth/logout/', logout_route),
+      path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    ]
     ```
 
   - Run `git add`, `git commit`, `git push` commands again to save all the changes into the github.
