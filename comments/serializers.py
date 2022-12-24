@@ -43,6 +43,7 @@ class CommentSerializer(serializers.ModelSerializer):
         ]
 
 
+# Help was taken from Code Institute's DRF API walkthrough project.
 class CommentDetailSerializer(CommentSerializer):
     '''
     Serializer for the Comment model used in Detail view.

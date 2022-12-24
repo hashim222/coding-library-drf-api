@@ -26,6 +26,7 @@ class CommentList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
+# Help was taken from Code Institute's DRF API walkthrough project.
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     '''
     Comments can be retrieved, updated, and deleted.

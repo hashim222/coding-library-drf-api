@@ -3,6 +3,7 @@ from rest_framework import serializers
 from .models import Follower
 
 
+# Help was taken from Code Institute's DRF API walkthrough project.
 class FollowerSerializer(serializers.ModelSerializer):
     '''
     Follower serializer to converts Follower models into JSON,
@@ -17,7 +18,6 @@ class FollowerSerializer(serializers.ModelSerializer):
             'id', 'owner', 'created_on', 'followed', 'followed_name'
         ]
 
-    # Help was taken from Code Institute's DRF API walkthrough project.
     def create(self, validated_data):
         '''
         If a user tries to follow the same user multiple times,

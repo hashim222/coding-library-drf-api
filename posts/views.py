@@ -48,6 +48,7 @@ class PostList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
+# Help was taken from Code Institute's DRF API walkthrough project.
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     '''
     Posts can be retrieved, updated, and deleted.

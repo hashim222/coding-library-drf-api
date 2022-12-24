@@ -432,5 +432,5 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
   - I used the Code Institute's DRF-API walkthrough project as a guide to make this Backend API. Updates were also made.
   - All the codes have been credited.
   - Leah Fisher's [pp5-backend-DRF-the-winding-path](https://github.com/cornishcoder1/pp5-backend-DRF-the-winding-path) project provided insight into what needs to be added in my readme file.
-  - Throughout the project, I received assistance from tutor support.
+  - Throughout the project, I received alot of assistance from tutor support.
   - [Grammarly](https://www.grammarly.com/) was used while creating the readme documentation to fix some grammar issues due to english being not my first language.

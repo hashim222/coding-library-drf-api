@@ -37,6 +37,7 @@ class ProfileList(generics.ListAPIView):
     ]
 
 
+# Help was taken from Code Institute's DRF API walkthrough project.
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """
     Each profile can be retrieved by ID and updated as well.

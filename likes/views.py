@@ -17,6 +17,7 @@ class LikeList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
+# Help was taken from Code Institute's DRF API walkthrough project.
 class LikeDetail(generics.RetrieveDestroyAPIView):
     '''
     Likes can be retrieved and deleted.

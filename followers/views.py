@@ -17,6 +17,7 @@ class FollowerList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
+# Help was taken from Code Institute's DRF API walkthrough project.
 class FollowerDetail(generics.RetrieveDestroyAPIView):
     '''
     Retrieves single user info by Id and the owner can unfollow
