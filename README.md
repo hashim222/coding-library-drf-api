@@ -8,6 +8,10 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
 - ### Live View For [Coding Library DRF-API ](https://coding-library-drf-api.herokuapp.com/)
 
+- ### Github Repository For [Project5 Coding Library ](https://github.com/hashim222/p5-coding-library/)
+
+- ### Live View For [Project5 Coding Library Frontend ](https://p5-coding-library.herokuapp.com/)
+
 ## Contents
 
 - [Database Scheme](#database-scheme)
