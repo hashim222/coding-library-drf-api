@@ -31,6 +31,6 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     '''
     Comments can be retrieved, updated, and deleted.
     '''
-    serializer_class = CommentSerializer
+    serializer_class = CommentDetailSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Comment.objects.all()
