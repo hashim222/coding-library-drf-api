@@ -12,7 +12,7 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=100)
-    caption = models.TextField(blank=True)
+    caption = models.TextField()
     image = models.ImageField(
         upload_to='images/', default='../default_post_z0gbil', blank=True
     )
