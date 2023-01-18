@@ -42,7 +42,8 @@ Coding Library Drf-Api is a back-end API created using Django Rest Framework tha
 
 ## Database Scheme
 
-![Database schema for the website](static/readme-images/database-schema.png)
+- To achieve a merit grade, I created a new `ContactForm` model based on a suggestion from my newly appointed mentor.
+  ![Database schema for the website](static/readme-images/database-schema.png)
 
 ## Testings
 

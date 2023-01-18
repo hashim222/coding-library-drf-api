@@ -1,7 +1,5 @@
 # Testings
 
-- ### All aspects of this project were tested manually during development.
-
 ## URL Testings
 
 - Both the development and deployed versions of each URL have been manually tested by adding all the `/profiles`, `/posts`, `/comments`, `/likes`, `/bookmarks`, and `/followers` next to url path one at a time to ensure everything is working.
