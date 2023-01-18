@@ -1,5 +1,21 @@
 # Testings
 
+## Automated Testings
+
+- Unit testings in `posts` app.
+
+  - ### PostListView Testcase
+
+    ![Post list view testcase](static/readme-images/post-list-view-test.png)
+
+  - ### PostDetailView Testcase
+
+    ![Post details view testcase](static/readme-images/post-details-view-tests.png)
+
+  - ### Results for the testings
+
+    ![result od Post testcase](static/readme-images/post-automated-result.png)
+
 ## URL Testings
 
 - Both the development and deployed versions of each URL have been manually tested by adding all the `/profiles`, `/posts`, `/comments`, `/likes`, `/bookmarks`, and `/followers` next to url path one at a time to ensure everything is working.
@@ -19,6 +35,8 @@
   - To test the deployed site, same steps were taken as development testing, only this time I had to use the Admin panel `https://coding-library-drf-api.herokuapp.com/admin/` to test all the crud functionalities.
 
   ![crud testings perfomed](static/readme-images/crud-testings.png)
+
+  Additionally, frontend crud testing has been performed, which can be found on [Coding Library](https://github.com/hashim222/p5-coding-library) testings section.
 
 ## Code Validation
 
