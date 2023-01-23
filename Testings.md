@@ -26,7 +26,7 @@
 
 - Tested that users can search posts by post title or by the username of the posts owner.
 
-- ### Developments Testings
+- ### Development Testings
 
   - To test each crud functionality. I created two separate users and went through each url and their crud endpoints to test if everything was working as expected and everything was working fine.
 
